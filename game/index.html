@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <title>How Fast Can You "Typo"?</title>
+    <meta charset='utf-8'>
+</head>
+
+<body>
+    <div style="padding-top:20%">
+        <h1>How Fast Can You "Typo"? </h1>
+        <form name="typoChallenge">
+            <table>
+                <tr>
+                    <td>
+                        <input type=button value="START" onClick="typeAsFastAsYouCan()">
+                        <p>
+                            <textarea name="getSentence" cols=53 rows=3 wrap=on
+                                onFocus="dontEvenThinkAboutIt()"></textarea>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type=text name="typed" size=46>
+                        <input type=button value="SUBMIT" onClick="Results()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <script>
+
+        msg = new Array("JavaScript is an interesting programming language.",
+            "How do you comfort a JavaScript bug? You console it.",
+            "The JavaScript developer was sad because he didn't Node how to Express himself.",
+            "I'm starting to wonder if there are more client-side JavaScript frameworks than there are apps that use them.")
+        numWords = 10 // this does NOT represent the real number of words of the sentences.
+        function typeAsFastAsYouCan() {
+            randomNumber = Math.floor((Math.random() * 10)) % 4
+            msgRandom = msg[randomNumber]
+            firstDay = new Date();
+            getTime1 = firstDay.getTime();
+            document.typoChallenge.getSentence.value = msgRandom
+            document.typoChallenge.typed.focus();
+            document.typoChallenge.typed.select();
+        }
+        function dontEvenThinkAboutIt() {
+            alert("Where do you think you are going, huh? Copying and pasting is not allowed!");
+            document.typoChallenge.typed.focus();
+        }
+        function Results() {
+            newDay = new Date();
+            getTime2 = newDay.getTime();
+            totalTime = ((getTime2 - getTime1) / 1000)
+            result = Math.round((numWords / totalTime) * 60)
+            if (document.typoChallenge.typed.value == document.typoChallenge.getSentence.value) {
+                alert("\nYou typed a " + numWords + " word sentence in "
+                    + totalTime + " seconds, which means your typing speed was " + result + " words per minute!")
+            }
+            else {
+                alert("You made a mistake. Please try again.")
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
