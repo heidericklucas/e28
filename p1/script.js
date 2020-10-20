@@ -48,6 +48,8 @@ const app = new Vue({
         this.gameFirst = false
         melody.pause()
         melody.currentTime = 0
+        cheerClap.pause()
+        cheerClap.currentTime = 0
         tense.play()
         this.welcomeState = false
         this.initialized = true
@@ -65,7 +67,7 @@ const app = new Vue({
         index = Math.floor(index)
         
         let word = this.wordBank[index]
-        this.wordBank.splice(index, 1) // remove the word so it won't be repeated
+        this.wordBank.splice(index, 1) // remove the word so it will not be repeated
         return word
       },
 
