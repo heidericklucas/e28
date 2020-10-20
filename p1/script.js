@@ -1,35 +1,55 @@
-// audio effects
+// music audio effects
+var melody = new Audio('audio/melody.mp3')
 var tense = new Audio('audio/tense.mp3')
 var uhOh = new Audio('audio/uh-oh.mp3')
 var cheerClap = new Audio('audio/cheer-clap.mp3')
-var melody = new Audio('audio/melody.mp3')
 
 const app = new Vue({
     el: "#app",
     data: function() {
       return {
-        playMusic: melody.play(),
-        strikes: 11,
-        word: "HANGMAN",
-        wordLetters: ['H', 'A', 'N', 'G', 'M', 'A', 'N'],
-        wordDisplayLetters: ['H', 'A', 'N', 'G', 'M', 'A', 'N'],
+        strikes: 0,
+        word: "",
+        wordLetters: [],
+        wordDisplayLetters: [],
         usedLetters: [],
-        possibleLetters1: ["A", "B", "C", "D", "E", "F", "G", "H", "I"],
-        possibleLetters2: ["J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"],
-        possibleLetters3: ["T", "U", "V", "W", "X", "Y", "Z"],
-        initialState: true,
+        possibleLetters1: [],
+        possibleLetters2: [],
+        possibleLetters3: [],
+        welcomeState: true,
+        gameFirst: false,
         initialized: false,
         gameOverState: false,
         youWinState: false,
-        wordBank: ['COFFEE', 'ZEBRA', 'ELEPHANT', 'CHICAGO', 'AMSTERDAM', 'BARCELONA', 'SHENZHEN', 'LONDON', 'MISSISSIPPI', 'STARTUP', 'JAVASCRIPT', 'PYTHON']
+        wordBank: []
       }
     },
     methods: {
+      gameScreen() {
+        this.welcomeState = false
+        this.gameFirst = true
+        melody.play()
+        this.strikes = 11
+        this.word = "HANGMAN",
+        this.wordLetters = ['H', 'A', 'N', 'G', 'M', 'A', 'N'],
+        this.wordDisplayLetters = ['H', 'A', 'N', 'G', 'M', 'A', 'N'],
+        this.usedLetters = [],
+        this.possibleLetters1 = ["A", "B", "C", "D", "E", "F", "G", "H", "I"],
+        this.possibleLetters2 = ["J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"],
+        this.possibleLetters3 = ["T", "U", "V", "W", "X", "Y", "Z"],
+        this.initialized = false,
+        this.gameOverState = false,
+        this.youWinState = false,
+        this.wordBank = ['COFFEE', 'ZEBRA', 'ELEPHANT', 'CHICAGO', 'AMSTERDAM', 'BARCELONA', 'SHENZHEN', 'LONDON', 'MISSISSIPPI', 'STARTUP', 'JAVASCRIPT', 'PYTHON']
+      },
+
       initialize() {
+        this.welcomeState = false
+        this.gameFirst = false
         melody.pause()
         melody.currentTime = 0
         tense.play()
-        this.initialState = false
+        this.welcomeState = false
         this.initialized = true
         this.gameOverState = false
         this.youWinState = false

@@ -11,36 +11,23 @@
 <body>
   <div id="app" class="container">
 
-    <!-- Before Game Starts -->
-    <template v-if="initialState">
-
-      <svg width="350px" height="275px">
-      <line v-if="strikes > 0" x1="80" y1="257" x2="260" y2="257" style="stroke:black;fill:none;stroke-width:2px;" />
-      <line v-if="strikes > 1" x1="100" y1="257" x2="100" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
-      <line v-if="strikes > 2" x1="100" y1="40" x2="230" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
-      <line v-if="strikes > 3" x1="100" y1="80" x2="130" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
-      <line v-if="strikes > 4" x1="230" y1="40" x2="230" y2="80" style="stroke:black;fill:none;stroke-width:2px;" />
-      <circle v-if="strikes > 5 && gameOverState == false" cx="230" cy="90" style="fill:khaki;stroke:black;stroke-width:2px;" r="20" />
-      <circle v-if="strikes > 5 && gameOverState == true" cx="230" cy="90" style="fill:red;stroke:black;stroke-width:2px;" r="20" />
-      <line v-if="strikes > 6" x1="230" y1="110" x2="230" y2="170" style="stroke:black;fill:none;stroke-width:2px;" />
-      <line v-if="strikes > 7" x1="230" y1="140" x2="250" y2="120" style="stroke:black;fill:none;stroke-width:2px;" />
-      <line v-if="strikes > 8" x1="230" y1="140" x2="210" y2="120" style="stroke:black;fill:none;stroke-width:2px;" />
-      <line v-if="strikes > 9" x1="230" y1="170" x2="250" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
-      <line v-if="strikes > 10" x1="230" y1="170" x2="210" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
-      </svg>
-        
-      <div>
-        <div class="letter" v-for="letter in wordDisplayLetters">
-          {{letter}}
+    <!-- When Page First Loads -->
+    <template v-if="welcomeState">
+      <div class="position-content">
+        <div>
+          <h1>Welcome to my P1</h1>
+          <h3>Author: Lucas Vieira</h3>
+          <p>You are totally responsible for any addiction acquired<br>by playing this game. If you consent to this, click the button below.</p>
         </div>
-      </div>
-      <button @click="initialize()">New Game</button>
+
+        <button @click="gameScreen()">I CONSENT</button>
+    </div>
     </template>
 
-    <!-- After Clicking on New Game -->
-    <template v-if="initialized">
-
-      <svg width="350px" height="275px">
+    <!-- Before Game Starts -->
+    <template v-if="gameFirst">
+      <div class="position-content">
+        <svg width="350px" height="275px">
         <line v-if="strikes > 0" x1="80" y1="257" x2="260" y2="257" style="stroke:black;fill:none;stroke-width:2px;" />
         <line v-if="strikes > 1" x1="100" y1="257" x2="100" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
         <line v-if="strikes > 2" x1="100" y1="40" x2="230" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
@@ -53,53 +40,84 @@
         <line v-if="strikes > 8" x1="230" y1="140" x2="210" y2="120" style="stroke:black;fill:none;stroke-width:2px;" />
         <line v-if="strikes > 9" x1="230" y1="170" x2="250" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
         <line v-if="strikes > 10" x1="230" y1="170" x2="210" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
-      </svg>
-
-      <div>
-        <div class="letter" v-for="letter in wordDisplayLetters">
-          {{letter}}
-      </div>
-
-      <div>
-        <div @click="tryLetter(letter)" class="possibleLetter" :class="getStrikethroughClass(letter)" v-for="letter in possibleLetters1">
-          {{letter}}
+        </svg>
+          
+        <div>
+          <div class="letter" v-for="letter in wordDisplayLetters">
+            {{letter}}
+          </div>
         </div>
-      </div>
-      <div>
-        <div @click="tryLetter(letter)" class="possibleLetter" :class="getStrikethroughClass(letter)" v-for="letter in possibleLetters2">
-          {{letter}}
-        </div>
-      </div>
-      <div>
-        <div @click="tryLetter(letter)" class="possibleLetter" :class="getStrikethroughClass(letter)" v-for="letter in possibleLetters3">
-          {{letter}}
-        </div>
-      </div>
-      <button @click="initialize()">New Game</button>
+        <button @click="initialize()">New Game</button>
+    </div>
     </template>
 
-    <!-- You Win -->
-    <template v-if="youWinState">
-      <div>
+    <!-- After Clicking on New Game -->
+    <template v-if="initialized">
+      <div class="position-content">
         <svg width="350px" height="275px">
-          <circle cx="175" cy="140" style="fill:khaki;stroke:black;stroke-width:2px;" r="20" />
-          <line x1="175" y1="160" x2="175" y2="220" style="stroke:black;fill:none;stroke-width:2px;" />
-          <line x1="175" y1="190" x2="195" y2="170" style="stroke:black;fill:none;stroke-width:2px;" />
-          <line x1="175" y1="190" x2="155" y2="170" style="stroke:black;fill:none;stroke-width:2px;" />
-          <line x1="175" y1="220" x2="155" y2="250" style="stroke:black;fill:none;stroke-width:2px;" />
-          <line x1="175" y1="220" x2="195" y2="250" style="stroke:black;fill:none;stroke-width:2px;" />
+          <line v-if="strikes > 0" x1="80" y1="257" x2="260" y2="257" style="stroke:black;fill:none;stroke-width:2px;" />
+          <line v-if="strikes > 1" x1="100" y1="257" x2="100" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
+          <line v-if="strikes > 2" x1="100" y1="40" x2="230" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
+          <line v-if="strikes > 3" x1="100" y1="80" x2="130" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
+          <line v-if="strikes > 4" x1="230" y1="40" x2="230" y2="80" style="stroke:black;fill:none;stroke-width:2px;" />
+          <circle v-if="strikes > 5 && gameOverState == false" cx="230" cy="90" style="fill:khaki;stroke:black;stroke-width:2px;" r="20" />
+          <circle v-if="strikes > 5 && gameOverState == true" cx="230" cy="90" style="fill:red;stroke:black;stroke-width:2px;" r="20" />
+          <line v-if="strikes > 6" x1="230" y1="110" x2="230" y2="170" style="stroke:black;fill:none;stroke-width:2px;" />
+          <line v-if="strikes > 7" x1="230" y1="140" x2="250" y2="120" style="stroke:black;fill:none;stroke-width:2px;" />
+          <line v-if="strikes > 8" x1="230" y1="140" x2="210" y2="120" style="stroke:black;fill:none;stroke-width:2px;" />
+          <line v-if="strikes > 9" x1="230" y1="170" x2="250" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
+          <line v-if="strikes > 10" x1="230" y1="170" x2="210" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
         </svg>
-      </div>
 
-      <div>
-        <div class="letter" v-for="letter in wordDisplayLetters">
-          {{letter}}
+        <div>
+          <div class="letter" v-for="letter in wordDisplayLetters">
+            {{letter}}
+        </div>
+
+        <div>
+          <div @click="tryLetter(letter)" class="possibleLetter" :class="getStrikethroughClass(letter)" v-for="letter in possibleLetters1">
+            {{letter}}
+          </div>
         </div>
         <div>
-          <img src='youWin.png' class="end-game">
+          <div @click="tryLetter(letter)" class="possibleLetter" :class="getStrikethroughClass(letter)" v-for="letter in possibleLetters2">
+            {{letter}}
+          </div>
         </div>
         <div>
-          <button @click="initialize()">Play Again?</button>
+          <div @click="tryLetter(letter)" class="possibleLetter" :class="getStrikethroughClass(letter)" v-for="letter in possibleLetters3">
+            {{letter}}
+          </div>
+        </div>
+        <button @click="initialize()">New Game</button>
+        </div>
+        </div>
+      </template>
+
+      <!-- You Win -->
+      <template v-if="youWinState">
+        <div class="position-content">
+        <div>
+          <svg width="350px" height="275px">
+            <circle cx="175" cy="140" style="fill:khaki;stroke:black;stroke-width:2px;" r="20" />
+            <line x1="175" y1="160" x2="175" y2="220" style="stroke:black;fill:none;stroke-width:2px;" />
+            <line x1="175" y1="190" x2="195" y2="170" style="stroke:black;fill:none;stroke-width:2px;" />
+            <line x1="175" y1="190" x2="155" y2="170" style="stroke:black;fill:none;stroke-width:2px;" />
+            <line x1="175" y1="220" x2="155" y2="250" style="stroke:black;fill:none;stroke-width:2px;" />
+            <line x1="175" y1="220" x2="195" y2="250" style="stroke:black;fill:none;stroke-width:2px;" />
+          </svg>
+        </div>
+
+        <div>
+          <div class="letter" v-for="letter in wordDisplayLetters">
+            {{letter}}
+          </div>
+          <div>
+            <img src='youWin.png' class="end-game">
+          </div>
+          <div>
+            <button @click="initialize()">Play Again?</button>
+          </div>
         </div>
       </div>
 
@@ -107,31 +125,32 @@
 
       <!-- Game Over -->
         <template v-if="gameOverState">
+          <div class="position-content">
+            <svg width="350px" height="275px">
+              <line v-if="strikes > 0" x1="80" y1="257" x2="260" y2="257" style="stroke:black;fill:none;stroke-width:2px;" />
+              <line v-if="strikes > 1" x1="100" y1="257" x2="100" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
+              <line v-if="strikes > 2" x1="100" y1="40" x2="230" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
+              <line v-if="strikes > 3" x1="100" y1="80" x2="130" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
+              <line v-if="strikes > 4" x1="230" y1="40" x2="230" y2="80" style="stroke:black;fill:none;stroke-width:2px;" />
+              <circle v-if="strikes > 5 && gameOverState == false" cx="230" cy="90" style="fill:khaki;stroke:black;stroke-width:2px;" r="20" />
+              <circle v-if="strikes > 5 && gameOverState == true" cx="230" cy="90" style="fill:red;stroke:black;stroke-width:2px;" r="20" />
+              <line v-if="strikes > 6" x1="230" y1="110" x2="230" y2="170" style="stroke:black;fill:none;stroke-width:2px;" />
+              <line v-if="strikes > 7" x1="230" y1="140" x2="250" y2="120" style="stroke:black;fill:none;stroke-width:2px;" />
+              <line v-if="strikes > 8" x1="230" y1="140" x2="210" y2="120" style="stroke:black;fill:none;stroke-width:2px;" />
+              <line v-if="strikes > 9" x1="230" y1="170" x2="250" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
+              <line v-if="strikes > 10" x1="230" y1="170" x2="210" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
+            </svg>
 
-          <svg width="350px" height="275px">
-            <line v-if="strikes > 0" x1="80" y1="257" x2="260" y2="257" style="stroke:black;fill:none;stroke-width:2px;" />
-            <line v-if="strikes > 1" x1="100" y1="257" x2="100" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
-            <line v-if="strikes > 2" x1="100" y1="40" x2="230" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
-            <line v-if="strikes > 3" x1="100" y1="80" x2="130" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
-            <line v-if="strikes > 4" x1="230" y1="40" x2="230" y2="80" style="stroke:black;fill:none;stroke-width:2px;" />
-            <circle v-if="strikes > 5 && gameOverState == false" cx="230" cy="90" style="fill:khaki;stroke:black;stroke-width:2px;" r="20" />
-            <circle v-if="strikes > 5 && gameOverState == true" cx="230" cy="90" style="fill:red;stroke:black;stroke-width:2px;" r="20" />
-            <line v-if="strikes > 6" x1="230" y1="110" x2="230" y2="170" style="stroke:black;fill:none;stroke-width:2px;" />
-            <line v-if="strikes > 7" x1="230" y1="140" x2="250" y2="120" style="stroke:black;fill:none;stroke-width:2px;" />
-            <line v-if="strikes > 8" x1="230" y1="140" x2="210" y2="120" style="stroke:black;fill:none;stroke-width:2px;" />
-            <line v-if="strikes > 9" x1="230" y1="170" x2="250" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
-            <line v-if="strikes > 10" x1="230" y1="170" x2="210" y2="200" style="stroke:black;fill:none;stroke-width:2px;" />
-          </svg>
-
-          <div>
-            <div class="letter" v-for="letter in wordDisplayLetters">
-              {{letter}}
-            </div>
             <div>
-              <img src='gameOver.png' class="end-game">
-            </div>
-            <div>
-              <button @click="initialize()">Play Again?</button>
+              <div class="letter" v-for="letter in wordDisplayLetters">
+                {{letter}}
+              </div>
+              <div>
+                <img src='gameOver.png' class="end-game">
+              </div>
+              <div>
+                <button @click="initialize()">Play Again?</button>
+              </div>
             </div>
           </div>
         </template>

@@ -1,35 +1,42 @@
 .container {
-    text-align: center;
-  }
-  
-  .letter {
-    display: inline-block;
-    border-bottom: 1px solid;
-    margin: 0px 3px 0px 3px;
-    font-size: 35px;
-    min-width: 30px;
-    vertical-align: bottom;
-  }
-  
-  .possibleLetter {
-    display: inline-block;
-    margin: 10px 3px 0px 3px;
-    font-size: 35px;
-    min-width: 30px;
-    cursor: pointer;
-  }
-  
-  .diagonal-strike {
-    background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);
-    color: dimgrey;
-  }
-  
-  button {
-    margin-top: 20px;
-    padding: 5px;
+  text-align: center;
   }
 
-  .end-game {
-    margin-top: 20px;
-    width: 200px;
-  }
+.position-content {
+  position: absolute;
+  transform: translate3d(-50%, -40%, 0);
+  left: 50%;
+  top: 40%;
+}
+
+.letter {
+  display: inline-block;
+  border-bottom: 1px solid;
+  margin: 0px 3px 0px 3px;
+  font-size: 35px;
+  min-width: 30px;
+  vertical-align: bottom;
+}
+
+.possibleLetter {
+  display: inline-block;
+  margin: 10px 3px 0px 3px;
+  font-size: 35px;
+  min-width: 30px;
+  cursor: pointer;
+}
+
+.diagonal-strike {
+  background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);
+  color: dimgrey;
+}
+
+button {
+  margin-top: 20px;
+  padding: 5px;
+}
+
+.end-game {
+  margin-top: 20px;
+  width: 200px;
+}
