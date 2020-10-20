@@ -4,6 +4,7 @@
   <title>Project 1 - Hangman Game</title>
   <meta charset='utf-8'>
   <link rel='stylesheet' href='styles.css'>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js' defer></script>
   <script src="lodash.js"></script>
   <script src='script.js' defer></script>
@@ -151,6 +152,23 @@
               <div>
                 <button @click="initialize()">Play Again?</button>
               </div>
+            </div>
+          </div>
+        </template>
+
+        <!-- Game Over -->
+        <template v-if="noMoreWordsState">
+          <div class="position-content">
+            <div>
+              <img src='error.jpg' class="end-game">
+            </div>
+            <div>
+              <p>
+                There are no more words in the game.
+              </p>
+            </div>
+            <div>
+              <button @click="gameScreen()">Play Again?</button>
             </div>
           </div>
         </template>
