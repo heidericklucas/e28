@@ -13,7 +13,7 @@
 
     <!-- Before Game Starts -->
     <template v-if="initialState">
-    
+
       <svg width="350px" height="275px">
       <line v-if="strikes > 0" x1="80" y1="257" x2="260" y2="257" style="stroke:black;fill:none;stroke-width:2px;" />
       <line v-if="strikes > 1" x1="100" y1="257" x2="100" y2="40" style="stroke:black;fill:none;stroke-width:2px;" />
@@ -90,7 +90,7 @@
           <line x1="175" y1="220" x2="195" y2="250" style="stroke:black;fill:none;stroke-width:2px;" />
         </svg>
       </div>
-      
+
       <div>
         <div class="letter" v-for="letter in wordDisplayLetters">
           {{letter}}

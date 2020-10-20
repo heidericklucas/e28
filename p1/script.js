@@ -1,7 +1,14 @@
+// audio effects
+var tense = new Audio('audio/tense.mp3')
+var uhOh = new Audio('audio/uh-oh.mp3')
+var cheerClap = new Audio('audio/cheer-clap.mp3')
+var melody = new Audio('audio/melody.mp3')
+
 const app = new Vue({
     el: "#app",
     data: function() {
       return {
+        playMusic: melody.play(),
         strikes: 11,
         word: "HANGMAN",
         wordLetters: ['H', 'A', 'N', 'G', 'M', 'A', 'N'],
@@ -19,6 +26,9 @@ const app = new Vue({
     },
     methods: {
       initialize() {
+        melody.pause()
+        melody.currentTime = 0
+        tense.play()
         this.initialState = false
         this.initialized = true
         this.gameOverState = false
@@ -78,12 +88,18 @@ const app = new Vue({
         this.gameOverState = false
         this.initialized = false
         this.strikes = 0
+        tense.pause()
+        tense.currentTime = 0
+        cheerClap.play()
       },
 
       gameOver() {
         this.youWinState = false
         this.gameOverState = true
         this.initialized = false
+        tense.pause()
+        tense.currentTime = 0
+        uhOh.play()
       }
 
     }
