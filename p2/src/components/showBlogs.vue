@@ -3,7 +3,8 @@
       <h1>All Blog Articles</h1>
       <div v-for="blog in blogs" v-bind:key="blog" class="single-blog">
           <h2>{{ blog.title }}</h2>
-          <article>{{ blog.body }}</article>
+          <h3>{{ blog.author }}</h3>
+          <article>{{ blog.content }}</article>
       </div>
 
   </div>
@@ -20,8 +21,8 @@ export default {
   methods: {
 
   },
-  create() {
-      this.$http.get('https://jsonplaceholder.typicode.com/posts').then(function(data){
+  created() {
+      this.$http.get('http://localhost:3000/posts').then(function(data){
           this.blogs = data.body.slice(0,10);
       })
   }

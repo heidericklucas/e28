@@ -1,5 +1,11 @@
 <template>
   <div>
+    <nav id="header">
+      <ul>
+        <li><router-link to="/">BLOG</router-link></li>
+        <li><router-link to="/add">ADD A NEW BLOG POST</router-link></li>
+      </ul>
+    </nav>
     <router-view></router-view>
   </div>
 </template>
@@ -34,5 +40,25 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#header > ul {
+  list-style-type: none;
+  text-align: center;
+  margin:0;
+}
+#header > ul > li {
+  display: inline-block;
+  margin: 0 10px;
+}
+#header a {
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+#header {
+  background: #444;
+  padding: 14px 0;
+  margin-bottom: 40px;
 }
 </style>

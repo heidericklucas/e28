@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "test1",
+      "author": "test2",
+      "content": "test3"
+    },
+    {
+      "id": 2,
+      "title": "fhdhdgtjh",
+      "author": "gjsgjsdgj",
+      "content": "dgjgdjgdj"
+    },
+    {
+      "id": 3,
+      "title": "afhadfhad",
+      "author": "jhadhjadhja",
+      "content": "hadhadhjadhj"
+    },
+    {
+      "id": 4,
+      "title": "Test4",
+      "author": "Test4",
+      "content": "Test4"
+    },
+    {
+      "id": 5,
+      "title": "Test5",
+      "author": "Test5",
+      "content": "Test5"
+    },
+    {
+      "id": 6,
+      "title": "Test6",
+      "author": "Lucas",
+      "content": "Test6"
+    }
+  ]
+}
