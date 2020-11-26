@@ -6,11 +6,11 @@
       </div>
       <div v-else>
         <h1>All Blog Articles</h1>
-        <div v-for="blog in blogs" v-bind:key="blog" class="single-blog">
-            <h2>{{ blog.title }}</h2>
-            <article>{{ blog.content }}</article>
-            <p>Author: {{ blog.author }}</p>
-        </div>
+            <div v-for="blog in blogs" v-bind:key="blog" class="single-blog">
+                <h2>{{ blog.title }}</h2>
+                <article>{{ blog.content }}</article>
+                <p>Author: {{ blog.author }}</p>
+            </div>
       </div>
 
   </div>
