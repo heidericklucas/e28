@@ -1,7 +1,7 @@
 <template>
     <div id="add-blog">
         <h2> Add a New Blog Post</h2>
-        <form v-if="!submitted" v-bind:key="blog.id">
+        <form v-if="!submitted">
             <label>Blog Title:</label>
             <input type="text" v-model.lazy="blog.title" required />
             <label>Blog Content:</label>
@@ -27,13 +27,14 @@
         </div>
         <div id="preview">
             <h3>Preview Blog</h3>
-            <p>Blog title: {{ blog.title }}</p>
-            <p>Blog content:</p>
+            <p>Title: {{ blog.title }}</p>
+            <p>Content:</p>
             <p>{{ blog.content }}</p>
-            <p>Blog Categories:</p>
+            <p>Categories:</p>
             <ul>
                 <li v-for="category in blog.categories" v-bind:key="category">{{ category }}</li>
             </ul>
+            <p>Author: {{ blog.author }}</p>
         </div>
     </div>
 </template>
@@ -44,7 +45,6 @@ export default {
     data() {
         return {
            blog: {
-               id: "",
                title: "",
                content: "",
                categories: [],
@@ -56,12 +56,7 @@ export default {
     },
     methods: {
         post: function() {
-            this.$http.post('http://localhost:3000/posts', {
-                id: this.blog.id,
-                title: this.blog.title,
-                author: this.blog.author,
-                content: this.blog.content
-            }).then(function(data){
+            this.$http.post('https://p2-blog-harvard.firebaseio.com/posts.json', this.blog).then(function(data){
                 console.log(data);
                 this.submitted = true;
             });

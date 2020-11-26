@@ -3,8 +3,8 @@
       <h1>All Blog Articles</h1>
       <div v-for="blog in blogs" v-bind:key="blog" class="single-blog">
           <h2>{{ blog.title }}</h2>
-          <h3>{{ blog.author }}</h3>
           <article>{{ blog.content }}</article>
+          <p>Author: {{ blog.author }}</p>
       </div>
 
   </div>
@@ -22,8 +22,15 @@ export default {
 
   },
   created() {
-      this.$http.get('http://localhost:3000/posts').then(function(data){
-          this.blogs = data.body.slice(0,10);
+      this.$http.get('https://p2-blog-harvard.firebaseio.com/posts.json').then(function(data){
+          return data.json();
+      }).then(function(data) {
+          var blogsArray = [];
+          for (let key in data) {
+              data[key].id = key
+              blogsArray.push(data[key]);
+          }
+          this.blogs = blogsArray;
       })
   }
 }

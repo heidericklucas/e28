@@ -4,6 +4,7 @@
       <ul>
         <li><router-link to="/">BLOG</router-link></li>
         <li><router-link to="/add">ADD A NEW BLOG POST</router-link></li>
+        <li><router-link to="/donate">DONATE</router-link></li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -13,12 +14,14 @@
 <script>
 import addBlog from './components/addBlog.vue';
 import showBlogs from './components/showBlogs.vue';
+import Donate from './components/Donate.vue';
 
 export default {
   name: 'App',
   Components: {
     'add-blog': addBlog,
-    'show-blogs': showBlogs
+    'show-blogs': showBlogs,
+    'donate': Donate,
   },
   data() {
     return {
