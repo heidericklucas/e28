@@ -41,6 +41,8 @@
 
 <script>
 
+import { axios } from '@/main.js';
+
 export default {
     data() {
         return {
