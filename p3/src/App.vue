@@ -4,8 +4,8 @@
       <ul>
         <li><router-link to="/">BLOG</router-link></li>
         <li><router-link to="/add">ADD A NEW BLOG POST</router-link></li>
-        <li><router-link to="/donate">DONATE</router-link></li>
         <li><router-link to="/account">ACCOUNT</router-link></li>
+        <li><router-link to="/donate">DONATE</router-link></li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -16,6 +16,8 @@
 import addBlog from './components/addBlog.vue';
 import showBlogs from './components/showBlogs.vue';
 import Donate from './components/Donate.vue';
+import accountPage from './components/accountPage.vue';
+import accessDenied from './components/accessDenied.vue';
 
 export default {
   name: 'App',
@@ -23,6 +25,8 @@ export default {
     'add-blog': addBlog,
     'show-blogs': showBlogs,
     'donate': Donate,
+    'account-page': accountPage,
+    'access-denied': accessDenied,
   },
   data() {
     return {

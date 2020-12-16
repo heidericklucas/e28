@@ -3,25 +3,15 @@
         <div v-if="user">
             <h2>Hi, {{ user.name }}!</h2>
 
-            <div id="favorites">
-                <strong>Your Favorites</strong>
-                <p v-if="favorites && favorites.length == 0">
-                    No favorites yet.
-                </p>
-                <li v-for="(favorite, key) in favorites" v-bind:key="key">
-                    {{ favorite.name }}
-                </li>
+            <div>
+                <strong>Congratulations!<br>Now you can donate to my blog project!</strong>
             </div>
 
             <button @click="logout">Logout</button>
         </div>
 
         <div v-else id="loginForm">
-            <h2>Login</h2>
-            <small
-                >(Form is prefilled for demonstration purposes; remove in final
-                application)</small
-            >
+            <h2>Login so you can donate to my blog project!</h2>
             <div>
                 <label>Email: <input type="text" v-model="data.email" /></label>
             </div>
@@ -50,19 +40,15 @@ export default {
         return {
             // Form is prefilled for demonstration purposes; remove in final application
             data: {
-                email: 'jill@harvard.edu',
-                password: 'asdfasdf',
+                email: '',
+                password: '',
             },
             errors: null,
-            favorites: null,
         };
     },
     computed: {
         user() {
             return this.$store.state.user;
-        },
-        products() {
-            return this.$store.state.products;
         },
     },
     methods: {
@@ -81,29 +67,6 @@ export default {
                     this.$store.commit('setUser', null);
                 }
             });
-        },
-    },
-    watch: {
-        // When user changes, update favorites
-        user() {
-            if (this.user) {
-                this.favorites = [];
-
-                axios
-                    .get('favorite/query', {
-                        params: { user_id: this.user.id },
-                    })
-                    .then((response) => {
-                        // Iterate through the favorites (response.data.results), loading the product information for each favorite
-                        this.favorites = response.data.results.map(
-                            (favorite) => {
-                                return this.$store.getters.getProductById(
-                                    favorite.product_id
-                                );
-                            }
-                        );
-                    });
-            }
         },
     }
 };
