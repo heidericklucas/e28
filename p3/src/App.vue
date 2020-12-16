@@ -5,6 +5,7 @@
         <li><router-link to="/">BLOG</router-link></li>
         <li><router-link to="/add">ADD A NEW BLOG POST</router-link></li>
         <li><router-link to="/donate">DONATE</router-link></li>
+        <li><router-link to="/account">ACCOUNT</router-link></li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -30,7 +31,10 @@ export default {
   },
   methods: {
 
-  }
+  },
+  mounted() {   
+    this.$store.dispatch('authUser');
+}
 }
 </script>
 
