@@ -14,7 +14,6 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        // [...existing actions...]
         authUser(context) {
             axios.post('auth').then((response) => {
                 if (response.data.authenticated) {
